@@ -4,7 +4,7 @@ class CartPage {
     constructor(driver) {
         this.driver = driver;
         this.addItem = By.xpath("//button[@id='add-to-cart-sauce-labs-backpack']");
-        this.buttonCart = By.xpath("//div[@id='shopping_cart_container']/a[1]");
+        this.buttonCart = By.css(".shopping_cart_link");        
     }
     async item() {
         await this.driver.findElement(this.addItem).click();
@@ -13,8 +13,8 @@ class CartPage {
         await this.driver.findElement(this.buttonCart).click();
     }
     async isOnCart() {
-        const titleitem = await this.driver.findElement(By.className('inventory_item_name'));
-        return titleitem.getText();
+        const title = await this.driver.findElement(By.xpath("//span[@class='title']"));
+        return title.getText();
     }
     
 }
